@@ -11,7 +11,7 @@
 		<style type="text/css">
 
 			body		{
-							background-image: url("./images/shelf-bg.jpg");
+							background-image: url("../static/img/shelf-bg.jpg");
 							background-attachment: fixed;
 							background-size: cover;
 							
@@ -92,9 +92,9 @@
 	
 		<div class="login">
 			<form action="/login" method="post">
-				<span class="cat"> Username: </span> <input id="user" type="text"   width="30" placeholder="  nest email">
+				<span class="cat"> Username: </span> <input id="username" name="username" type="text" width="30" placeholder="  nest email">
 					<div style="margin: 8px"></div>
-				<span class="cat" style="margin-right:3px;"> Password: </span> <input id="password" type="password"  width="30" placeholder="  nest password">
+				<span class="cat" style="margin-right:3px;"> Password: </span> <input id="password" name="password" type="password"  width="30" placeholder="  nest password">
 					<div style="margin: 4px"></div>
 				<span style="margin-left: 160px"> <button type="submit">Log in</button> </span>
 			</form>
