@@ -28,19 +28,13 @@
 			
 			.login		{
 							position: relative;
-							top: 170px;
-							left: 10%;
+							top: -70px;
+							left: 60%;
 							width: 15em;
 							height: 4em;
 							
 							padding: 15px;
 							
-							background-color: rgba(0, 153, 0, 0.7);
-							border-radius: 25px;
-							border-color: SlateGray;
-							border-style: solid;
-							border-width: 3px;
-
 							font-size: 18pt;
 						}
 			
@@ -55,11 +49,11 @@
 						
 			.newu a		{
 							position:relative; 
-							top:250px; 
-							left:23%; 
+							top:-100px; 
+							left: 68%; 
 							
 							color: rgba(0,153,0,1); 							
-							font-size: 17pt;
+							font-size: 15pt;
 							font-weight: bold;							
 						}
 						
@@ -67,6 +61,58 @@
 							border-color: red;
 							outline: none; 
 						}
+						
+			.button		{
+						   border: 2px solid #009900;
+						   background: #fafafa;
+						   background: -webkit-gradient(linear, left top, left bottom, from(#858585), to(#fafafa));
+						   background: -webkit-linear-gradient(top, #858585, #fafafa);
+						   background: -moz-linear-gradient(top, #858585, #fafafa);
+						   background: -ms-linear-gradient(top, #858585, #fafafa);
+						   background: -o-linear-gradient(top, #858585, #fafafa);
+						   background-image: -ms-linear-gradient(top, #858585 0%, #fafafa 100%);
+						   padding: 4.5px 9px;
+						   -webkit-border-radius: 30px;
+						   -moz-border-radius: 30px;
+						   border-radius: 30px;
+						   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+						   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+						   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+						   text-shadow: #000000 0 1px 0;
+						   color: #009900;
+						   font-size: 13px;
+						   font-family: helvetica, serif;
+						   text-decoration: none;
+						   vertical-align: middle;
+						}
+						
+			.button:hover  {
+							   border: 2px solid #ff0000;
+							   text-shadow: #000000 0 1px 0;
+							   background: #f23030;
+							   background: -webkit-gradient(linear, left top, left bottom, from(#ff8f8f), to(#f23030));
+							   background: -webkit-linear-gradient(top, #ff8f8f, #f23030);
+							   background: -moz-linear-gradient(top, #ff8f8f, #f23030);
+							   background: -ms-linear-gradient(top, #ff8f8f, #f23030);
+							   background: -o-linear-gradient(top, #ff8f8f, #f23030);
+							   background-image: -ms-linear-gradient(top, #ff8f8f 0%, #f23030 100%);
+							   color: #fff;
+						   }
+   
+			.button:active {
+							   text-shadow: #000000 0 1px 0;
+							   border: 2px solid #ff0000;
+							   background: #ff8c8c;
+							   background: -webkit-gradient(linear, left top, left bottom, from(#f03c3c), to(#f23030));
+							   background: -webkit-linear-gradient(top, #f03c3c, #ff8c8c);
+							   background: -moz-linear-gradient(top, #f03c3c, #ff8c8c);
+							   background: -ms-linear-gradient(top, #f03c3c, #ff8c8c);
+							   background: -o-linear-gradient(top, #f03c3c, #ff8c8c);
+							   background-image: -ms-linear-gradient(top, #f03c3c 0%, #ff8c8c 100%);
+							   color: #fff;
+							}
+
+   
 		</style>		
 				
 				
@@ -94,7 +140,7 @@
 					<div style="margin: 8px"></div>
 				<span class="cat" style="margin-right:3px;"> Password: </span> <input id="password" name="password" type="password"  width="30" placeholder="  nest password">
 					<div style="margin: 4px"></div>
-				<span style="margin-left: 160px"> <button type="submit">Log in</button> </span>
+				<span style="margin-left: 250px"> <button type="submit" class="button">Log in</button> </span>
 			</form>
 		</div>			
 		
