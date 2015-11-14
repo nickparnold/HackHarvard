@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8" />
+    <title>Hack Harvard</title>
+
+    <style>
+      #puzzle { float:left; }
+      #puzzle p { text-align:center; font-weight:bold }
+      #original { float:left; }
+      #original p { text-align:center; font-weight:bold }
+      #buttons { clear:both; margin-left:350px; }
+      #wrapper { margin-left: auto; margin-right: auto; width:900px; background-color:#bbb; padding:15px; border-radius: 25px; box-shadow: 10px 10px 5px grey}
+      table { background-color: white; margin-right:10px; }
+      h1 { text-align: center; text-shadow: 2px 2px 4px grey }
+    </style>
+
+    <script type = "text/javascript">
+         <!--
+
+         // Number of rows and columns in tileArray 
+         var NUM_ROWS = 3;
+         var NUM_COLS = 3;
+
+         /* Tile Array keeps track of what JPG image should appear in which spot in the HTML table.
+          * So initially "img00.jpg" should appear in the top left corner of the table, but this 
+          * may change as the game is played. 
+          * Your general strategy should be to modify tileArray to reflect changes in the tile
+          * locations, then copy the contents of this array to the HTML table. 
+          * The "hole" is represented by an empty filename, e.g. ""
+          */
+         var tileArray  = [ [ "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img00.jpg", 
+                              "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img01.jpg", 
+                              "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img02.jpg" ],
+                            [ "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img10.jpg", 
+                              "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img11.jpg", 
+                              "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img12.jpg" ],
+                            [ "http://www.usna.edu/Users/cs/adina/teaching/it350/img/empty.jpg", 
+                              "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img21.jpg", 
+                              "http://www.usna.edu/Users/cs/adina/teaching/it350/img/img22.jpg" ] ];
+ 
+
+         // This function prints out the value of the 2-dimensional array 'someArray'.
+         // This is just to demonstrate how to use a 2-dimensional array
+         function testFunction() {
+	         var testArray = [ ["apple",  "banana",   "cookie" ],
+	                           ["dog",    "elephant", "fox"    ] ];
+	         var numRows = 2;
+	         var numCols = 3;
+	                           
+	         for (var row=0; row < numRows; row++) {
+	            for (var col=0; col < numCols; col++) {
+		           document.writeln("<br/>Value in ("+row+","+col+") is "+testArray[row][col]);   
+	            }
+            }
+         }
+                 
+         // --> 
+    </script>
+  </head>
+
+  <body>
+
+    <h1>Out of Line Midshipmen</h1>
+
+    <!-- The fun colored floating box. -->
+    <div id="wrapper">
+
+
+      <!-- First table is for the moving tiles and buttons -->
+      <div id="puzzle">
+	<p>The Puzzle</p>
+	<table>
+	  <tr> 
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	  </tr>
+	  <tr> 
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	  </tr>
+	  <tr> 
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	    <td> <img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/monkey.jpg" width="144" height="101"  alt="Game tile" /> </td>
+	  </tr>
+	</table>
+      </div>
+
+      <!-- Second table is the original image.  Shows up on the right -->
+      <div id="original">
+	<p>Original Image</p>
+	<img src="http://www.usna.edu/Users/cs/adina/teaching/it350/img/bancroft.jpg" alt="Original image">
+      </div>
+
+      <!-- Form with the text fields and buttons. -->
+      <div id="buttons">
+	<form>
+          <p>Background color: <input type="text" size="3" name="mycolor" value="white">
+            <br>Number of steps to shuffle: <input type="text" value="1" size="3" name="numSteps">
+            <br>
+            <input type="button" value="Load Puzzle"> 
+            <input type="button" value="Shuffle"> 
+	  </p>
+	</form>
+      </div>
+
+    </div>
+
+    <!-- This shows how you can call JavaScript from within the body of your HTML.  
+	 Make sure you put the <script> and </script> tags on a line by themselves. 
+	 You might want to put additional test code here.
+	 An advantage of JavaScript here is that it executes AFTER the table above has loaded,
+	 which is not true of JavaScript that is in the <head> 
+      -->
+    <script type="text/javascript">
+      testFunction();
+    </script>
+    
+  </body>
+</html>
