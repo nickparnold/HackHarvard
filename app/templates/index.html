@@ -4,19 +4,23 @@
 
 	<head>
 		<meta charset = "utf-8" />
-		<title>Hack Harvard</title>
+		<title>Hack Harvard Login</title>
+		
+		<link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300|Pompiere' rel='stylesheet' type='text/css'>
 
 		<style type="text/css">
 
 			body		{
-							background-image: url("../static/img/shelf-bg.jpg");
+							background-image: url("./images/shelf-bg.jpg");
 							background-attachment: fixed;
 							background-size: cover;
+							
+							font-family: 'Yanone Kaffeesatz', sans-serif;		
+							font-weight: bold;
 						}
 			
 			.title		{
-							font-size: 30pt;
-							font-family: "Lucida Console";							
+							font-size: 40pt;					
 							margin-top: 90px;
 							margin-left: 200px;
 							color: rgba(0, 153, 0, 1)
@@ -24,10 +28,10 @@
 			
 			.login		{
 							position: relative;
-							top: 200px;
+							top: 170px;
 							left: 10%;
-							width: 18.5em;
-							height: 5em;
+							width: 15em;
+							height: 4em;
 							
 							padding: 15px;
 							
@@ -37,8 +41,7 @@
 							border-style: solid;
 							border-width: 3px;
 
-							font-family: "Lucida Console";
-							font-size: 14pt;
+							font-size: 18pt;
 						}
 			
 			input		{
@@ -47,29 +50,39 @@
 							color: Gray;
 							
 							border-radius: 10px;
+							border-width: medium;
+							
+							
 						}
 						
 			.newu a		{
 							position:relative; 
-							top:300px; 
-							left:17%; 
+							top:250px; 
+							left:23%; 
 							
 							color: rgba(0,153,0,1); 							
-							font-size: 15pt;
+							font-size: 17pt;
 							font-weight: bold;							
+						}
+						
+			input:focus {
+							border-color: red;
+							outline: none; 
 						}
 		</style>		
 				
 				
 		<script type = "text/javascript">
 		<!--
-
+			function focusUser() {
+				document.getElementById("user").focus();
+			}
 		--> 
 		</script>
 
 	</head>
 
-	<body>
+	<body onload="focusUser()">
 	
 		<div class="title"> 
 		
@@ -78,12 +91,12 @@
 		</div>
 	
 		<div class="login">
-			<form name="login" action="/login" method="post">
-				<span class="cat"> Username: </span> <input id="user" type="text" width="30" name="username" placeholder="  nest username">
-					<br><br>
-				<span class="cat"> Password: </span> <input id="password" type="password" width="30" name="password" placeholder="  nest password">
+			<form action="/login" method="post">
+				<span class="cat"> Username: </span> <input id="user" type="text"   width="30" placeholder="  nest email">
 					<div style="margin: 8px"></div>
-				<span style="margin-left: 180px"> <button type="submit" value="Login">Log in</button> </span>
+				<span class="cat" style="margin-right:3px;"> Password: </span> <input id="password" type="password"  width="30" placeholder="  nest password">
+					<div style="margin: 4px"></div>
+				<span style="margin-left: 160px"> <button type="submit">Log in</button> </span>
 			</form>
 		</div>			
 		

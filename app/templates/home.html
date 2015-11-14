@@ -4,12 +4,19 @@
 
 	<head>
 		<meta charset = "utf-8" />
-		<title>Hack Harvard</title>
+		<title>Hack Harvard Profile</title>
 
+		<link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300|Pompiere' rel='stylesheet' type='text/css'>
+		
 		<style type="text/css">
 
 			body		{
-							background-color: Beige;
+							background-image: url("./images/room4.jpg");
+							background-attachment: fixed;
+							background-size: cover;
+							
+							font-family: 'Yanone Kaffeesatz', sans-serif;		
+							font-weight: bold;
 						}
 						
 			.header		{
@@ -17,49 +24,71 @@
 							top: 0;
 							left: 0;
 							width: 100%;
-							height: 5em;
+							height: 4em;
 							
-							padding-top: 15px;
+							padding-top: 10px;
 							padding-bottom: 15px;
 							
-							background-color: rgba(0, 153, 0, 1);				
-							text-align: center;
-							font-family: Arial;
+							background-color: rgba(0, 179, 60, 0.7);	
+							font-size: 16pt;
+							text-align: center;													
 							color: white;
+							z-index: 100;
+						}
+						
+			.footer		{
+							position: fixed;
+							bottom: 0%;
+							width: 100%;
+							
+							padding-top: 8px;
+							padding-bottom: 8px;
+							
+							background-color: rgba(0, 179, 60, 0.7);								
+							text-align: center;													
+							color: white;
+							font-size: 18pt;
 						}
 						
 			.goals		{
-							position: relative;
-							top: 180px;
-							left: 55%;
+							position: fixed;
+							top: 16%;
+							right: 10%;
 							width: 20em;
-							height: 25em;
+							height: 13em;
 							
 							padding: 5px;
-							padding-top: 10px;
+							padding-top: 30px;
 							
-							background-color: rgba(248,248,255,0.2);
-							border-radius: 25px;
-							border-color: white;
-							border-style: solid;
-							border-width: 3px;								
+							color: black;							
 						}
 			
 			.g1			{
-							color: white;
 							font-weight: bold;
-							font-size: x-large;
-							text-shadow: 2px 2px #000000;
+							font-size: 18pt;
+							text-shadow: 0.5px 0.5px #006600;
 							margin-left: 18%;							
 						}	
 						
 			.g2			{
-							color: white;
 							font-weight: bold;
-							font-size: large;
-							text-shadow: 1px 1px #000000;
+							font-size: 16pt;
+							text-shadow: 0.5px 0.5px #006600;
 							margin-left: 38%;							
-						}				
+						}
+						
+			.datatab	{
+							position: 
+						}
+
+			.graph		{
+							position: fixed;
+							left: 4%;
+							width: 50em;
+							height: 200em;
+							
+							background-color: rgba(179, 179, 179, 0.3);							
+						}
 		</style>		
 				
 				
@@ -74,18 +103,30 @@
 	<body>
 	
 		<div class="header">
-			<img src="./images/co-logo.jpg" style="float:left; margin-left:100px;" height="70px" width="70px" alt="Capital One logo">
-			<img src="./images/nest-logo.jpg" style="float:right; margin-right:100px;" height="70px" width="70px" alt="Nest logo">
-			<h1 style="text-shadow: 2px 2px #000000"> Welcome to Survivable Habitats! </h1>			
-				<br>	
-			<h3 style="font-weight:bold; text-shadow: 1px 1px #000000"> - - Keep your home comfortable while maintaining your budgeting goals - - </h3> 
+			<h1 style="text-shadow: 2px 2px #006600"> Your Energy Usage </h1>			
 		</div>
 		
 		<div class="goals">
-			<span class="g1"> Your spending <span style="color:red; text-shadow:none">goal</span> </span> <br><br>
-				<span class="g2" id="goal"> $2,000.00 </span> <br><br><br><br>
-			<span class="g1"> Your spending <span style="color:red; text-shadow:none">limit</span> </span> <br><br>
+			<span class="g1"> Your spending <span style="color:rgb(0, 102, 0); text-shadow:none">goal</span> </span> <br><br>
+				<span class="g2" id="goal"> $2,000.00 </span> <br><br><br>
+			<span class="g1"> Your spending <span style="color:rgb(0, 102, 0); text-shadow:none">limit</span> </span> <br><br>
 				<span class="g2" id="limit"> $3,000.00 </span>							
+		</div>
+		
+		<div class="graph">
+		
+			
+		
+		</div>
+		
+		<div class="graph">
+		
+			
+		
+		</div>
+		
+		<div class="footer" style="text-shadow: 1px 1px  black">		
+			- - Keep your home comfortable while maintaining your budgeting goals - -		
 		</div>
 
 	</body>
