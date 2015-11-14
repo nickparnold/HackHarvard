@@ -1,6 +1,7 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, flash
+from flask.ext.login import login_required
 from app import app, db, lm
-from .models import User
+from .models import User, Goals, NestConfig
 import os
 
 @app.route('/')
@@ -8,8 +9,13 @@ import os
 def login():
 	error = None
 	if request.method == 'POST':
-		if valid_login(request.form['username'], request.form['password']):
-			return redirect(url_for('home'))
+		email = request.form['username']
+		password = request.form['password']
+		if valid_login(email, password):
+			if check_user_in_db(email):
+				return render_template('setup.html', email=email, password=password)
+			else:
+				return render_template('home.html')
 	else:
 			error = 'Invalid email/password'
 	return render_template('index.html',error=error)
@@ -21,12 +27,35 @@ def valid_login(username, password):
 	else:
 		return False
 
-@app.route('/setup')
+def check_user_in_db(email):
+	habitats = User.query.all()
+	for user in habitats:
+		if user.email == email:
+			return False
+	return True
+
+@app.route('/setup', methods=['GET', 'POST'])
 def setup():
-	return "setup page"
+	habitatEmail = email
+	nestPassword = password
+	bankAccount = request.form['account']
+	monthly = request.form['goal']
+	limit = request.form['max']
+	state = request.form['state']
+	acSize = request.form['size']
+	if acSize == 'empty':
+		return render_template('setup.html', email=email, bankAccount=bankAccount, password=password)
+	u = User(email=habitatEmail, bankAccount=bankAccount, fullName = fullName)
+	#db.session.add(u)
+	#db.session.commit()
+	#g = Goals(monthly=monthly, maxlimit=limit, user_id=u)
+	#db.session.add(p)
+	#db.session.commit()
+	return render_template('setup.html')
 
 @app.route('/home')
 def home():
+	habitatEmail = email
 	return render_template('home.html')
 
 @app.route('/logout')
