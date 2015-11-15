@@ -4,6 +4,7 @@ from app import app, db, lm
 from .models import User
 import monthly
 import yearly
+import statistics
 import os
 
 @app.route('/')
@@ -21,7 +22,10 @@ def login():
 			else:
 				global u
 				u = User.query.filter_by(id=email).first();
-				return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit)
+				bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
+				monthGraph = monthly.makeGraph(u.id, bills)
+				yearGraph = yearly.makeGraph(u.id, bills)
+				return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate = yearGraph)
 	else:
 			error = 'Invalid email/password'
 	return render_template('index.html',error=error)
@@ -59,13 +63,17 @@ def setup():
 
 @app.route('/home')
 def home():
+	conserveEnergy()
 	return render_template('home.html')
 
 @app.route('/logout')
 def logout():
-	logout_user()
 	return redirect(url_for('index'))
 
 @app.template_filter('money')
 def money(s):
 	return "%.2f" % s
+
+def conserveEnergy():
+	u = User.query.filter_by(id=email).first()
+	statistics.energyStats(u.id, u.password)

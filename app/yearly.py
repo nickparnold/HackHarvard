@@ -27,8 +27,3 @@ def makeGraph(username, bills):
     fn = username+"/year"
     plot_url = py.plot(data, filename=fn, auto_open=False)
     return tls.get_embed(plot_url)
-
-
-bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
-
-print (makeGraph("yello", bills))
