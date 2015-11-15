@@ -4,7 +4,7 @@ import plotly.tools as tls
 import datetime
 
 
-def makeGraph(username, etc):
+def makeGraph(username, etc, goal, limit):
     # Add data
     now = datetime.datetime.now()
     days = [1]
@@ -22,6 +22,13 @@ def makeGraph(username, etc):
     else:
         days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
     
+    goals=[]
+    for i in days:
+        goals.append(goal)
+        
+    limits=[]
+    for i in days:
+        limits.append(limit)
         
     # Create and style traces
     points = go.Scatter(
@@ -33,7 +40,27 @@ def makeGraph(username, etc):
             width = 4)
     )
     
-    data = [points]
+    gls = go.Scatter(
+        x = days, 
+        y = goals,
+        name = 'Goal',
+        line = dict(
+            color = ('rgb(0, 0, 0)'),
+            width = 4,
+            dash = 'dot')
+    )
+    
+    lmts = go.Scatter(
+        x = days, 
+        y = limits,
+        name = 'Limit',
+        line = dict(
+            color = ('rgb(0, 0, 0)'),
+            width = 4,
+            dash = 'dot')
+    )
+    
+    data = [points, gls, lmts]
     # Edit the layout
     layout = dict(title = 'Daily Electric Estimates',
                   xaxis = dict(title = 'Days'),
@@ -48,4 +75,4 @@ def makeGraph(username, etc):
 
 bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
 
-print (makeGraph("yello", bills))
+print (makeGraph("yello", bills, 50, 100))
