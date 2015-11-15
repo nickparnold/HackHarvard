@@ -101,21 +101,21 @@
 		
 		<div class="goals">
 			<span class="g1"> Your spending <span style="color:rgb(0, 102, 0); text-shadow:none">goal</span> </span> <br><br>
-				<span class="g2" id="goal"> ${{ monthly | money}} </span> <br><br><br>
+				<span class="g2" id="goal"> $2,000.00 </span> <br><br><br>
 			<span class="g1"> Your spending <span style="color:rgb(0, 102, 0); text-shadow:none">limit</span> </span> <br><br>
-				<span class="g2" id="limit"> ${{ maxlimit | money}} </span>							
+				<span class="g2" id="limit"> $3,000.00 </span>							
 		</div>
 		
 		<div class="graph"> 
 				<h3 style="text-align:center; position: fixed; top: 4em; margin-left: 40%; z-index: -1;"> Scroll between daily and yearly </h3>
 				<div style="margin-bottom: 2em"> </div>
 				<h1> Daily energy expenditures </h1>
-			{{ monthGraph | safe}}
+				<div style="margin-bottom: 1em"> </div>
+			<iframe id="igraph" scrolling="no" style="border:none;"seamless="seamless" src="https://plot.ly/~bpull/83.embed" height="525" width="100%"></iframe>
 				<div style="margin-bottom: 5em"> </div>
 				<h1> Yearly energy expenditures </h1>
-				
-			{{ yeartodate | safe}}
-				<div style="margin-bottom: 3em"> </div>
+			<iframe id="igraph" scrolling="no" style="border:none;"seamless="seamless" src="https://plot.ly/~bpull/85.embed" height="525" width="100%"></iframe>
+				<div style="margin-bottom: 4em"> </div>
 		</div>
 		
 		<div class="footer" style="text-shadow: 1px 1px  black">		
