@@ -23,6 +23,7 @@ def login():
 				return render_template('setup.html')
 			else:
 				u = User.query.filter_by(id=email).first();
+				conserverEnergy();
 				bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
 				monthGraph = monthly.makeGraph(u.id, bills)
 				yearGraph = yearly.makeGraph(u.id, bills)
@@ -60,8 +61,8 @@ def setup():
 		db.session.commit()
 		u = User.query.filter_by(id=email).first();
 		bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
-		monthGraph = monthly.makeGraph(u.id, bills)
-		yearGraph = yearly.makeGraph(u.id, bills)
+		monthGraph = monthly.makeGraph(u.id, bills, u.monthly, u.maxlimit)
+		yearGraph = yearly.makeGraph(u.id, bills, u.monthly, u.maxlimit)
 		conserveEnergy();
 		return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate=yearGraph)
 	else:
@@ -87,3 +88,4 @@ def conserveEnergy():
 	u = User.query.filter_by(id=email).first()
 	statistics.energyStats(u.id, u.password)
 	u.timedeg = calibrate(u.id, u.password)
+	return
