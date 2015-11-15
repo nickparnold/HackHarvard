@@ -23,8 +23,9 @@ def login():
 				return render_template('setup.html')
 			else:
 				u = User.query.filter_by(id=email).first();
-				conserverEnergy();
-				bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+
+				#conserverEnergy();
+				bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45]
 				days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
 				monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 				yearGraph = yearly.makeGraph(u.id, bills)
@@ -57,15 +58,15 @@ def setup():
 		acSize = request.form['size']
 		if acSize == 'empty':
 			return render_template('setup.html', email=email, password=password)
-		u = User(id=email, bankAccount=bankAccount, password=password, monthly=monthly, maxlimit=limit, state=state, acUnit=acSize)
+		u = User(id='rashidajones@mailinator.com', bankAccount=bankAccount, password='ApplesOranges123!', monthly=monthly, maxlimit=limit, state=state, acUnit=acSize)
 		db.session.add(u)
 		db.session.commit()
 		u = User.query.filter_by(id=email).first();
-		bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+		bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45]
 		days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
 		monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 		yearGraph = yearly.makeGraph(u.id, bills)
-		conserveEnergy();
+		#conserveEnergy(email);
 		return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate=yearGraph)
 	else:
 		return render_template('index.html')
@@ -73,7 +74,7 @@ def setup():
 @app.route('/home')
 def home():
 	u = User.query.filter_by(id=email).first();
-	bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+	bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45]
 	days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
 	monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 	yearGraph = yearly.makeGraph(u.id, bills)
@@ -87,8 +88,8 @@ def logout():
 def money(s):
 	return "%.2f" % s
 
-def conserveEnergy():
+def conserveEnergy(email):
 	u = User.query.filter_by(id=email).first()
-	statistics.energyStats(u.id, u.password)
+	statistics.energyStats(u.id, u.password, u.state, u.acUnit)
 	u.timedeg = calibrate(u.id, u.password)
 	return
