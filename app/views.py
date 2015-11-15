@@ -23,9 +23,11 @@ def login():
 				return render_template('setup.html')
 			else:
 				u = User.query.filter_by(id=email).first();
-				#conserveEnergy(email);
-				bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
-				monthGraph = monthly.makeGraph(u.id, bills, u.monthly, u.maxlimit)
+
+				#conserverEnergy();
+				bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+				days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
+				monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 				yearGraph = yearly.makeGraph(u.id, bills)
 				return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate = yearGraph)
 	else:
@@ -59,9 +61,10 @@ def setup():
 		u = User(id='rashidajones@mailinator.com', bankAccount=bankAccount, password='ApplesOranges123!', monthly=monthly, maxlimit=limit, state=state, acUnit=acSize)
 		db.session.add(u)
 		db.session.commit()
-		u = User.query.filter_by(id='rashidajones@mailinator.com').first();
-		bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
-		monthGraph = monthly.makeGraph(u.id, bills, u.monthly, u.maxlimit)
+		u = User.query.filter_by(id=email).first();
+		bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+		days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
+		monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 		yearGraph = yearly.makeGraph(u.id, bills)
 		#conserveEnergy(email);
 		return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate=yearGraph)
@@ -71,8 +74,9 @@ def setup():
 @app.route('/home')
 def home():
 	u = User.query.filter_by(id=email).first();
-	bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
-	monthGraph = monthly.makeGraph(u.id, bills, u.monthly, u.maxlimit)
+	bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+	days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
+	monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 	yearGraph = yearly.makeGraph(u.id, bills)
 	return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate=yearGraph)
 
