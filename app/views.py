@@ -25,7 +25,7 @@ def login():
 				u = User.query.filter_by(id=email).first();
 
 				#conserverEnergy();
-				bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+				bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45]
 				days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
 				monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 				yearGraph = yearly.makeGraph(u.id, bills)
@@ -62,7 +62,7 @@ def setup():
 		db.session.add(u)
 		db.session.commit()
 		u = User.query.filter_by(id=email).first();
-		bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+		bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45]
 		days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
 		monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 		yearGraph = yearly.makeGraph(u.id, bills)
@@ -74,7 +74,7 @@ def setup():
 @app.route('/home')
 def home():
 	u = User.query.filter_by(id=email).first();
-	bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45, 0]
+	bills = [0, 0, 0, 0, 0, 160.40, 195.23, 203.04, 161.86, 134.45]
 	days = [3, 7, 10, 12, 16, 21, 34, 38, 42, 47, 50, 54, 58, 57, 62]
 	monthGraph = monthly.makeGraph(u.id, days, u.monthly, u.maxlimit)
 	yearGraph = yearly.makeGraph(u.id, bills)
