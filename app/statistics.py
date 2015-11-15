@@ -33,9 +33,14 @@ def energyStats(user, passw, stateInput, acSize):
 def calibrate(user, password):
     proc = subprocess.Popen(["python", "nest.py", "--user", user, "--password", passw, "curtemp"], stdout=subprocess.PIPE)
     currtem = proc.communicate()[0].strip('\n')
+    curtarget = currtem + 10
     time_start = time.time()
-
-    sleep(1)
+    proc = subprocess.Popen(["python", "nest.py", "--user", user, "--password", passw, "temp", curtarget], stdout=subprocess.PIPE)
+    while (curtarget - currtem) != 0:
+        proc = subprocess.Popen(["python", "nest.py", "--user", user, "--password", passw, "curtemp"], stdout=subprocess.PIPE)
+        currtem = proc.communicate()[0].strip('\n')
+        time.sleep(30)
     proc = subprocess.Popen(["python", "nest.py", "--user", user, "--password", passw, "curtemp"], stdout=subprocess.PIPE)
     currtem = proc.communicate()[0].strip('\n')
     duration = time.time() - time_start
+    return duration/10

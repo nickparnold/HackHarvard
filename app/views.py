@@ -7,12 +7,14 @@ import yearly
 import statistics
 import os
 
+global email 
+global u
+
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	error = None
 	if request.method == 'POST':
-		global email 
 		email = request.form['username']
 		global password 
 		password = request.form['password']
@@ -20,7 +22,6 @@ def login():
 			if check_user_in_db(email):
 				return render_template('setup.html')
 			else:
-				global u
 				u = User.query.filter_by(id=email).first();
 				bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
 				monthGraph = monthly.makeGraph(u.id, bills)
@@ -57,14 +58,22 @@ def setup():
 		u = User(id=email, bankAccount=bankAccount, password=password, monthly=monthly, maxlimit=limit, state=state, acUnit=acSize)
 		db.session.add(u)
 		db.session.commit()
-		return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit)
+		u = User.query.filter_by(id=email).first();
+		bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
+		monthGraph = monthly.makeGraph(u.id, bills)
+		yearGraph = yearly.makeGraph(u.id, bills)
+		conserveEnergy();
+		return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate=yearGraph)
 	else:
 		return render_template('index.html')
 
 @app.route('/home')
 def home():
-	conserveEnergy()
-	return render_template('home.html')
+	u = User.query.filter_by(id=email).first();
+	bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
+	monthGraph = monthly.makeGraph(u.id, bills)
+	yearGraph = yearly.makeGraph(u.id, bills)
+	return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate=yearGraph)
 
 @app.route('/logout')
 def logout():
@@ -77,3 +86,4 @@ def money(s):
 def conserveEnergy():
 	u = User.query.filter_by(id=email).first()
 	statistics.energyStats(u.id, u.password)
+	u.timedeg = calibrate(u.id, u.password)

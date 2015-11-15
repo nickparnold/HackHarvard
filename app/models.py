@@ -8,6 +8,7 @@ class User(db.Model):
 	maxlimit = db.Column(db.Float, index=True)
 	state = db.Column(db.String(15), index=True)
 	acUnit = db.Column(db.String(10), index=True)
+	timedeg = db.Column(db.Numeric, index=True)
 	dailyestimation = db.Column(db.Float, index=True)
 
 	def __init__(self, id, bankAccount, password, monthly, maxlimit, state, acUnit):
