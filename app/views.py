@@ -23,7 +23,7 @@ def login():
 				return render_template('setup.html')
 			else:
 				u = User.query.filter_by(id=email).first();
-				conserverEnergy();
+				#conserveEnergy(email);
 				bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
 				monthGraph = monthly.makeGraph(u.id, bills, u.monthly, u.maxlimit)
 				yearGraph = yearly.makeGraph(u.id, bills)
@@ -56,14 +56,14 @@ def setup():
 		acSize = request.form['size']
 		if acSize == 'empty':
 			return render_template('setup.html', email=email, password=password)
-		u = User(id=email, bankAccount=bankAccount, password=password, monthly=monthly, maxlimit=limit, state=state, acUnit=acSize)
+		u = User(id='rashidajones@mailinator.com', bankAccount=bankAccount, password='ApplesOranges123!', monthly=monthly, maxlimit=limit, state=state, acUnit=acSize)
 		db.session.add(u)
 		db.session.commit()
-		u = User.query.filter_by(id=email).first();
+		u = User.query.filter_by(id='rashidajones@mailinator.com').first();
 		bills = [32.5, 37.6, 49.9, 53.0, 69.1, 75.4, 76.5, 76.6, 70.7, 60.6, 45.1, 29.3]
 		monthGraph = monthly.makeGraph(u.id, bills, u.monthly, u.maxlimit)
 		yearGraph = yearly.makeGraph(u.id, bills)
-		conserveEnergy();
+		#conserveEnergy(email);
 		return render_template('home.html', monthly=u.monthly, maxlimit=u.maxlimit, monthGraph=monthGraph, yeartodate=yearGraph)
 	else:
 		return render_template('index.html')
@@ -84,8 +84,8 @@ def logout():
 def money(s):
 	return "%.2f" % s
 
-def conserveEnergy():
+def conserveEnergy(email):
 	u = User.query.filter_by(id=email).first()
-	statistics.energyStats(u.id, u.password)
+	statistics.energyStats(u.id, u.password, u.state, u.acUnit)
 	u.timedeg = calibrate(u.id, u.password)
 	return
