@@ -1,19 +1,23 @@
 from app import db
 
 class User(db.Model):
-	id = db.Column(db.Integer, index=True, primary_key=True)
-	email = db.Column(db.String(50),index=True, unique=True)
+	id = db.Column(db.String(50), index=True, unique=True, primary_key=True)
 	bankAccount = db.Column(db.String(24), index=True)
 	password = db.Column(db.String(50), index=True, unique=True)
-	goals = db.relationship('Goals', backref='consumer', lazy='dynamic')
-	nestConfig = db.relationship('NestConfig', backref='consumer', lazy='dynamic')
+	monthly = db.Column(db.Float, index=True)
+	maxlimit = db.Column(db.Float, index=True)
+	state = db.Column(db.String(15), index=True)
+	acUnit = db.Column(db.String(10), index=True)
+	dailyestimation = db.Column(db.Float, index=True)
 
-	def __init__(self, bankAccount, email, password, goals, nestConfig):
+	def __init__(self, id, bankAccount, password, monthly, maxlimit, state, acUnit):
+		self.id = id
 		self.bankAccount = bankAccount
-		self.email = email
 		self.password = password
-		self.goals = goals
-		self.nestConfig = nestConfig
+		self.monthly = monthly
+		self.maxlimit = maxlimit
+		self.state = state
+		self.acUnit = acUnit
 
 	def is_authenticated(self):
 		return True
@@ -28,23 +32,4 @@ class User(db.Model):
 		return unicode(self.id)
 
 	def __repr__(self):
-		return '<User %r>' % (self.fullName)
-
-class Goals(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	monthly = db.Column(db.Numeric)
-	maxlimit = db.Column(db.Numeric)
-	state = db.Column(db.String(15))
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-	def __repr__(self):
-		return '<Goals %r %r>' % (self.max), (self.monthly)
-
-class NestConfig(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	hvac_state = db.Column(db.Boolean)
-	temp = db.Column(db.Integer)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-	def __repr__(self):
-		return '<NestConfig %r %r>' % (self.hvac_state), (self.temp)
+		return '<User %r>' % (self.bankAccount)
