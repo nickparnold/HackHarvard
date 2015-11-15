@@ -29,7 +29,7 @@
 							padding-top: 10px;
 							padding-bottom: 15px;
 							
-							background-color: rgba(0, 179, 60, 0.7);	
+							background-color: rgba(0, 179, 60, 1);	
 							font-size: 16pt;
 							text-align: center;													
 							color: white;
@@ -44,7 +44,7 @@
 							padding-top: 8px;
 							padding-bottom: 8px;
 							
-							background-color: rgba(0, 179, 60, 0.7);								
+							background-color: rgba(0, 179, 60, 1);								
 							text-align: center;													
 							color: white;
 							font-size: 18pt;
@@ -76,18 +76,18 @@
 							text-shadow: 0.5px 0.5px #006600;
 							margin-left: 38%;							
 						}
-						
-			.datatab	{
-							
-						}
 
 			.graph		{
-							position: fixed;
-							left: 4%;
-							width: 50em;
-							height: 200em;
+							position: absolute;
+							top: 7em;
+							left: 5%;
+							width: 50em;							
 							
-							background-color: rgba(179, 179, 179, 0.3);							
+							background-color: rgba(179, 179, 179. 0);							
+						}
+			h1			{
+							text-align: center;
+							color: rgb(0, 153, 0);
 						}
 		</style>		
 				
@@ -99,11 +99,11 @@
 		</script>
 
 	</head>
-
+	
 	<body>
 	
 		<div class="header">
-			<h1 style="text-shadow: 2px 2px #006600"> Your Energy Usage </h1>			
+			<h1 style="text-shadow: 2px 2px #006600; color: white;"> Your Energy Usage </h1>			
 		</div>
 		
 		<div class="goals">
@@ -113,8 +113,18 @@
 				<span class="g2" id="limit"> $3,000.00 </span>							
 		</div>
 		
-		<div class="graph" style="margin-bottom: 400px;"> </div>
-		<div class="graph">	</div>
+		<div class="graph"> 
+				<h3 style="text-align:center"> Scroll between daily and yearly </h3>
+				<div style="margin-bottom: 2em"> </div>
+				<h1> Daily energy expenditures </h1>
+			<iframe id="igraph" scrolling="no" style="border:none; margin-left: 4.5em;"seamless="seamless" src="https://plot.ly/~bpull/83.embed" height="400px" width="80%"></iframe>
+				<div style="margin-bottom: 3em"> </div>
+				<h3 style="text-align:center"> Scroll between daily and yearly </h3>
+				<div style="margin-bottom: 2em"> </div>
+				<h1> Yearly energy expenditures </h1>
+			<iframe id="igraph" scrolling="no" style="border:none; margin-left: 4.5em;"seamless="seamless" src="https://plot.ly/~bpull/85.embed" height="400px" width="80%"></iframe>
+				<div style="margin-bottom: 4em"> </div>
+		</div>
 		
 		<div class="footer" style="text-shadow: 1px 1px  black">		
 			- - Keep your home comfortable while maintaining your budgeting goals - -		
