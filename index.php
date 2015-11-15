@@ -1,6 +1,6 @@
 <?php 
 
-$command = escapeshellcmd('/usr/custom/test.py');
+$command = escapeshellcmd('/server.py');
 $output = shell_exec($command);
 echo $output;
 
