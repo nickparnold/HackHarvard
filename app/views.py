@@ -13,7 +13,7 @@ def login():
 		password = request.form['password']
 		if valid_login(email, password):
 			if check_user_in_db(email):
-				return render_template('setup.html', email=email, password=password)
+				return redirect(url_for('setup', email=email, password=password))
 			else:
 				return render_template('home.html')
 	else:
@@ -35,7 +35,7 @@ def check_user_in_db(email):
 	return True
 
 @app.route('/setup', methods=['GET', 'POST'])
-def setup():
+def setup(email, password):
 	habitatEmail = email
 	nestPassword = password
 	bankAccount = request.form['account']
@@ -44,14 +44,14 @@ def setup():
 	state = request.form['state']
 	acSize = request.form['size']
 	if acSize == 'empty':
-		return render_template('setup.html', email=email, bankAccount=bankAccount, password=password)
-	u = User(email=habitatEmail, bankAccount=bankAccount, fullName = fullName)
-	#db.session.add(u)
-	#db.session.commit()
-	#g = Goals(monthly=monthly, maxlimit=limit, user_id=u)
-	#db.session.add(p)
-	#db.session.commit()
-	return render_template('setup.html')
+		return render_template('setup.html', email=habitatEmail, password=nestPassword)
+	u = User(email=habitatEmail, bankAccount=bankAccount, password=nestPassword)
+	db.session.add(u)
+	db.session.commit()
+	g = Goals(monthly=monthly, maxlimit=limit, state=state, user_id=u)
+	db.session.add(p)
+	db.session.commit()
+	return redirect(url_for('setup', email=habitatEmail, password=nestPassword))
 
 @app.route('/home')
 def home():
